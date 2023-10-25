@@ -1,3 +1,4 @@
+// 10:10AM
 #include <iostream>
 #include <iomanip>
 #include <cmath>
@@ -6,9 +7,9 @@
 using namespace std;
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 	int answer, day, month, year, bmonth, bday, byear, current, birthdate, age, minrange = 100000, maxrange = 999999, pin = rand();
-	string name, address, gender,acctype;
-	double inidepo, deposit,balance = inidepo+deposit;
-	char answer2;
+	string name, address, gender,acctype, birthday;
+	double inidepo, deposit,balance, withdraw;
+	char answer2,answer3;
 	 
 int main(int argc, char** argv) {
 do {
@@ -73,6 +74,7 @@ do {
 		age--;	
 		}
 		cout<<"\n\t\t\t\t\t\t\t\tYour birthday is "<<bday<<"/"<<bmonth<<"/"<<byear<<".";
+		
 		if (age >= 18) {
 	    cout<<"\n\t\t\t\t\t\t\t-------------------------------------------------------------\n";
      	cout<<"\t\t\t\t\t\t\t\t\t\tGender\n";
@@ -173,12 +175,11 @@ do {
 		cout<<"\t\t\t\t\t\t\t\t\t\tCreate an account first.\t ";
 	}
 	else {
-		do {
-			
-		cout<<"\t\t\t\t\t\t\t\t\tDeposit";
-	
 	cout<<"\n\t\t\t\t\t\t\t\t\tHow much do you want to deposit?: ";
 	cin>>deposit;
+		do {
+
+	
 	
 	if (acctype == "Savings") {
 		while (deposit < 300 || deposit < 0) {
@@ -192,27 +193,74 @@ do {
 			cin>>deposit;
 		}
 	}
+
 	cout<<"\t\t\t\t\t\t\t\t\tConfirm deposit of "<<deposit<<" ?(Y/N)";
-	cin>>answer;
-	
-	if (answer == 'Y' || answer == 'y') {
-		cout<<"\t\t\t\t\t\t\t\t\tSucessfully deposited "<<deposit<<" to the account.";
-	}
-	else if (answer2 == 'N' || answer == 'n') {
-		cout<<"\t\t\t\t\t\t\t\t\tAttempt cancelled, enter deposit amount again: ";
+	cin>>answer2;
+	if (answer2 == 'Y') {
+        
+			cout<<"\t\t\t\t\t\t\t\t\tSuccessfully deposited "<<deposit;
+			balance += deposit;
+			cout<<"\n\t\t\t\t\t\t\t\t\tNew Balance: "<<balance;
 	}
 }
-	while (answer == 'N');
-	}
+while (answer2 != 'Y');
+        }
 	break;
+	// option number 4
 	case 4: 
 	system("cls");
-	cout<<"Withdraw";
-	break;
+	cout<<"\n\t\t\t\t\t\t----------------------------------------------------------------------------\n";
+	cout<<"\t\t\t\t\t\t\t\t\t!LOPIT BANKING SYSTEM";
+	cout<<"\n\t\t\t\t\t\t----------------------------------------------------------------------------\n";
+	cout<<"\t\t\t\t\t\t\t\t\tWithdraw\n";
+	if (balance <= 0) {
+	cout<<"\t\t\t\t\t\t\t\t\tYou have no balance, deposit first.\n";	
+	}
+	else {
+		do {
+				cout<<"\n\t\t\t\t\t\t\t\t\tHow much do you want to withdraw?: ";
+	    cin>>withdraw;
+	    while (withdraw <= 0 || withdraw > balance) {
+		cout<<"\n\t\t\t\t\t\t\t\t\tInvalid amount, try again: ";
+		cin>>withdraw;
+ 	           		                                        }
+ 	    cout<<"\n\t\t\t\t\t\t\t\t\tConfirm withdrawal of "<<withdraw<<" ?";
+ 	    cin>>answer3;
+ 	    
+ 	    if (answer3 == 'Y' || answer3 == 'Y' ) {
+ 	          system("cls");
+ 	          	cout<<"\n\t\t\t\t\t\t----------------------------------------------------------------------------\n";
+              	cout<<"\t\t\t\t\t\t\t\t\t!LOPIT BANKING SYSTEM";
+	            cout<<"\n\t\t\t\t\t\t----------------------------------------------------------------------------\n";
+ 	    	    cout<<"\n\t\t\t\t\t\t\t\t\tSuccessfully withdrew "<<withdraw;
+ 	    	    balance -= withdraw;
+ 	    	    cout<<"\n\t\t\t\t\t\t\t\t\tNew Balance:  "<<balance;
+		 }
+		}
+		while (answer3 =='N' || answer3 == 'n');
+	    }
+	    
+    break;	
+	
+	//option number 5
 	case 5: 
 	system("cls");
-	cout<<"View Account Information";
+		cout<<"\n\t\t\t\t\t\t----------------------------------------------------------------------------\n";
+        cout<<"\t\t\t\t\t\t\t\t\t!LOPIT BANKING SYSTEM";
+	    cout<<"\n\t\t\t\t\t\t----------------------------------------------------------------------------\n";
+	cout<<"\n\t\t\t\t\t\t\t\t\ Account Information";
+	cout<<"\n\t\t\t\t\t\t\t\t\tFull Name: "<<name;
+	cout<<"\n\t\t\t\t\t\t\t\t\tFull Name: "<<address;
+	cout<<"\n\t\t\t\t\t\t\t\t\tFull Name: "<<name;
+	cout<<"\n\t\t\t\t\t\t\t\t\tFull Name: "<<name;
+	cout<<"\n\t\t\t\t\t\t\t\t\tFull Name: "<<name;
+	cout<<"\n\t\t\t\t\t\t\t\t\tFull Name: "<<name;
+	cout<<"\n\t\t\t\t\t\t\t\t\tFull Name: "<<name;
+	
+	
 	break;
+	
+	//option number 6
 	case 6: 
 	system("cls");
 	cout<<"Close Account";
