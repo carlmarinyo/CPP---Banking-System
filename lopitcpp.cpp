@@ -1,12 +1,13 @@
-// 10:49AM
+//4:58 pm 25/10/2023
 #include <iostream>
 #include <iomanip>
 #include <cmath>
 #include <string>
 #include <stdlib.h>
+#include <time.h>
 using namespace std;
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
-	int answer, day, month, year, bmonth, bday, byear, current, birthdate, age, minrange = 100000, maxrange = 999999, pin = rand();
+	int answer, day, month, year, bmonth, bday, byear, current, birthdate, age, minrange = 100000, maxrange = 999999, accno, pin, password;
 	string name, address, gender,acctype, birthday;
 	double inidepo, deposit,balance, withdraw;
 	char answer2,answer3,answer4,answer5;
@@ -130,9 +131,22 @@ do {
 				cin>>inidepo;
 			}		
 		}
-            	cout<<"\n\n\t\t\t\t\t\t\t\tSystem Generated PIN: "<<pin;
+            	cout<<"\n\n\t\t\t\t\t\t\t\tEnter PIN(6 digits only): ";
+            	cin>>pin;
+            	while (pin > 999999) {
+            		cout<<"\n\t\t\t\t\t\t\t\tEnter a 6 digit number only";
+            		cin>>pin;
+				}
+            	
 				cout<<"\n\t\t\t\t\t\t\t\tAccount Successfully Created!";
+			    srand(time(0));
+				for (int i=0; i<1; i++) {
+					cout<<"\n\t\t\t\t\t\t\t\tAccount number: "<<rand()<<""<<endl;		
+				}
 			
+				
+			
+				
 			
 			
 			
@@ -159,12 +173,19 @@ do {
 	cout<<"\t\t\t\t\t\t\t\t\t!LOPIT BANKING SYSTEM";
 	cout<<"\n\t\t\t\t\t\t----------------------------------------------------------------------------\n";
 	cout<<"\t\t\t\t\t\t\t\t\tBalance Inquiry\n";
-	if(balance == 0) {
-		cout<<"\n\t\t\t\t\t\t\t\t\tYou have no money, deposit first.\n\n";
-		  }
-	else {
-	cout<<"\n\n\t\t\t\t\t\t\t\t\tBalance: "<<balance<<endl;
+	if (inidepo > 0) {
+			cout<<"\t\t\t\t\t\t\t\t\tEnter password: ";
+		cin >>password;
+	
+	while (password != pin) {
+		cout<<"\t\t\t\t\t\t\t\t\tWrong password, reenter password: ";
+		cin >>password;	
 	}
+		cout<<"\t\t\t\t\t\t\t\t\tBalance: "<<balance<<endl;
+	
+		  
+	}
+	
 	break;
 	case 3: 
 	system("cls");
@@ -298,6 +319,3 @@ while (answer2 != 'Y');
 	
 	return 0;
 }
-
-
-
