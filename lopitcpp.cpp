@@ -1,4 +1,4 @@
-// 10:10AM
+// 10:49AM
 #include <iostream>
 #include <iomanip>
 #include <cmath>
@@ -9,7 +9,7 @@ using namespace std;
 	int answer, day, month, year, bmonth, bday, byear, current, birthdate, age, minrange = 100000, maxrange = 999999, pin = rand();
 	string name, address, gender,acctype, birthday;
 	double inidepo, deposit,balance, withdraw;
-	char answer2,answer3;
+	char answer2,answer3,answer4,answer5;
 	 
 int main(int argc, char** argv) {
 do {
@@ -248,28 +248,53 @@ while (answer2 != 'Y');
 		cout<<"\n\t\t\t\t\t\t----------------------------------------------------------------------------\n";
         cout<<"\t\t\t\t\t\t\t\t\t!LOPIT BANKING SYSTEM";
 	    cout<<"\n\t\t\t\t\t\t----------------------------------------------------------------------------\n";
-	cout<<"\n\t\t\t\t\t\t\t\t\ Account Information";
+	    if (inidepo <= 0) {
+	    	cout<<"\t\t\t\t\t\t\t\t\tNo account found.\n\n";
+		}
+		else {
+	cout<<"\t\t\t\t\t\t\t\t\t\tAccount Information\n";
 	cout<<"\n\t\t\t\t\t\t\t\t\tFull Name: "<<name;
-	cout<<"\n\t\t\t\t\t\t\t\t\tFull Name: "<<address;
-	cout<<"\n\t\t\t\t\t\t\t\t\tFull Name: "<<name;
-	cout<<"\n\t\t\t\t\t\t\t\t\tFull Name: "<<name;
-	cout<<"\n\t\t\t\t\t\t\t\t\tFull Name: "<<name;
-	cout<<"\n\t\t\t\t\t\t\t\t\tFull Name: "<<name;
-	cout<<"\n\t\t\t\t\t\t\t\t\tFull Name: "<<name;
-	
+	cout<<"\n\t\t\t\t\t\t\t\t\tBirthday: "<<bday<<"/"<<bmonth<<"/"<<byear;
+	cout<<"\n\t\t\t\t\t\t\t\t\tGender: "<<gender;
+	cout<<"\n\t\t\t\t\t\t\t\t\tAccount Type: "<<acctype;
+	cout<<"\n\t\t\t\t\t\t\t\t\tInitial Deposit: "<<inidepo;
+	cout<<"\n\t\t\t\t\t\t\t\t\tCurrent Balance: "<<balance;
+		}
 	
 	break;
 	
 	//option number 6
 	case 6: 
 	system("cls");
-	cout<<"Close Account";
-	break;
+	cout<<"\n\t\t\t\t\t\t----------------------------------------------------------------------------\n";
+    cout<<"\t\t\t\t\t\t\t\t\t!LOPIT BANKING SYSTEM";
+	cout<<"\n\t\t\t\t\t\t----------------------------------------------------------------------------\n";
+	do {
+	cout<<"\t\t\t\t\t\t\t\t\t\tDo you really want to close the account?(Y/N): ";
+	cin>>answer4;
+	if (answer4 == 'Y') {
+		inidepo = 0;
+		balance = 0;
+		cout<<"\t\t\t\t\t\t\t\t\t\tThe account is now closed.";
 	}
+	
+	}
+	while (answer4 =='N');
+	break;
+
+	}
+
 }
 	while (answer!=7);
-	system("cls");
+		cout<<"\t\t\t\t\t\t\t\t\t\tDo you really want to end the program?";
+	cin>>answer5;
+	
 		cout<<"\n\t\t\t\t\t\t\t\t\tThank you for using our program.";
+		cout<<"\n\t\t\t\t\t\t\t\t\tMariño, Carl Jerome N.";
+		cout<<"\n\t\t\t\t\t\t\t\t\tMark Gamboa";
+		cout<<"\n\t\t\t\t\t\t\t\t\tRonn Rosarito";
+	    cout<<"\n\t\t\t\t\t\t\t\t\tDominic Madlangbayan";
+		
 	
 	return 0;
 }
