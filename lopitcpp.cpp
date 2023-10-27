@@ -1,4 +1,4 @@
-//4:58 pm 25/10/2023
+//1:49 am 28/10/2023
 #include <iostream>
 #include <iomanip>
 #include <cmath>
@@ -7,7 +7,7 @@
 #include <time.h>
 using namespace std;
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
-	int answer, day, month, year, bmonth, bday, byear, current, birthdate, age, minrange = 100000, maxrange = 999999, accno, pin, password;
+	int answer, day, month, year, bmonth, bday, byear, current, birthdate, age, minrange = 100000, maxrange = 999999, accno, pin, password,password2, password3, password4, password5, password6;
 	string name, address, gender,acctype, birthday;
 	double inidepo, deposit,balance, withdraw;
 	char answer2,answer3,answer4,answer5;
@@ -174,34 +174,37 @@ do {
 	cout<<"\n\t\t\t\t\t\t----------------------------------------------------------------------------\n";
 	cout<<"\t\t\t\t\t\t\t\t\tBalance Inquiry\n";
 	if (inidepo > 0) {
-			cout<<"\t\t\t\t\t\t\t\t\tEnter password: ";
+		cout<<"\t\t\t\t\t\t\t\t\tEnter password: ";
 		cin >>password;
 	
 	while (password != pin) {
-		cout<<"\t\t\t\t\t\t\t\t\tWrong password, reenter password: ";
+		cout<<"\t\t\t\t\t\t\t\t\tWrong password, enter again: ";
 		cin >>password;	
 	}
-		cout<<"\t\t\t\t\t\t\t\t\tBalance: "<<balance<<endl;
-	
-		  
+		cout<<"\t\t\t\t\t\t\t\t\tBalance: "<<balance<<endl;	  
 	}
-	
+	else {
+		cout<<"\t\t\t\t\t\t\t\t\tCreate an account first.";
+	}
 	break;
+	
+	//option 3
 	case 3: 
 	system("cls");
 	cout<<"\n\t\t\t\t\t\t----------------------------------------------------------------------------\n";
 	cout<<"\t\t\t\t\t\t\t\t\t!LOPIT BANKING SYSTEM";
 	cout<<"\n\t\t\t\t\t\t----------------------------------------------------------------------------\n";
-	if (inidepo <=0) {
-		cout<<"\t\t\t\t\t\t\t\t\t\tCreate an account first.\t ";
+	cout<<"\t\t\t\t\t\t\t\t\tDeposit\n";
+	if (inidepo > 0) {
+		cout<<"\t\t\t\t\t\t\t\t\tEnter PIN: ";
+		cin>>password2;
+		while (pin != password2 ) {
+		cout<<"\n\t\t\t\t\t\t\t\t\tWrong password, enter again: ";
+		cin>>password2;
 	}
-	else {
+		do {
 	cout<<"\n\t\t\t\t\t\t\t\t\tHow much do you want to deposit?: ";
 	cin>>deposit;
-		do {
-
-	
-	
 	if (acctype == "Savings") {
 		while (deposit < 300 || deposit < 0) {
 			cout<<"\t\t\t\t\t\t\t\t\tEntered amount is not valid, try again: ";
@@ -214,19 +217,23 @@ do {
 			cin>>deposit;
 		}
 	}
-
-	cout<<"\t\t\t\t\t\t\t\t\tConfirm deposit of "<<deposit<<" ?(Y/N)";
+		cout<<"\t\t\t\t\t\t\t\t\tConfirm deposit of "<<deposit<<" ?(Y/N)";
 	cin>>answer2;
-	if (answer2 == 'Y') {
-        
+	if (answer2 == 'Y' || answer2 =='y') {
 			cout<<"\t\t\t\t\t\t\t\t\tSuccessfully deposited "<<deposit;
 			balance += deposit;
 			cout<<"\n\t\t\t\t\t\t\t\t\tNew Balance: "<<balance;
 	}
 }
-while (answer2 != 'Y');
-        }
+
+while (answer2 != 'Y' || answer2 == 'y');
+	}
+	
+	else {
+		cout<<"\t\t\t\t\t\t\t\t\tCreate an account first.";
+	}
 	break;
+	
 	// option number 4
 	case 4: 
 	system("cls");
@@ -234,12 +241,18 @@ while (answer2 != 'Y');
 	cout<<"\t\t\t\t\t\t\t\t\t!LOPIT BANKING SYSTEM";
 	cout<<"\n\t\t\t\t\t\t----------------------------------------------------------------------------\n";
 	cout<<"\t\t\t\t\t\t\t\t\tWithdraw\n";
-	if (balance <= 0) {
-	cout<<"\t\t\t\t\t\t\t\t\tYou have no balance, deposit first.\n";	
+	if (inidepo <= 0) {
+	cout<<"\t\t\t\t\t\t\t\t\tCreate an account first.";	
 	}
 	else {
+		cout<<"\t\t\t\t\t\t\t\t\tEnter PIN: ";
+		cin>>password3;	
+		while (pin!= password3) {
+		   cout<<"\t\t\t\t\t\t\t\t\tWrong password, enter again: ";
+		   cin>>password3;	
+		}
 		do {
-				cout<<"\n\t\t\t\t\t\t\t\t\tHow much do you want to withdraw?: ";
+		cout<<"\n\t\t\t\t\t\t\t\t\tHow much do you want to withdraw?: ";
 	    cin>>withdraw;
 	    while (withdraw <= 0 || withdraw > balance) {
 		cout<<"\n\t\t\t\t\t\t\t\t\tInvalid amount, try again: ";
@@ -269,17 +282,25 @@ while (answer2 != 'Y');
 		cout<<"\n\t\t\t\t\t\t----------------------------------------------------------------------------\n";
         cout<<"\t\t\t\t\t\t\t\t\t!LOPIT BANKING SYSTEM";
 	    cout<<"\n\t\t\t\t\t\t----------------------------------------------------------------------------\n";
-	    if (inidepo <= 0) {
-	    	cout<<"\t\t\t\t\t\t\t\t\tNo account found.\n\n";
-		}
-		else {
-	cout<<"\t\t\t\t\t\t\t\t\t\tAccount Information\n";
+	    if (inidepo > 0) {
+	    		cout<<"\t\t\t\t\t\t\t\t\t\tAccount Information\n";
+	    		cout<<"\n\t\t\t\t\t\t\t\t\t\t Enter PIN: ";
+	    		cin>>password4;
+	    		do {
+	    		cout<<"\n\t\t\t\t\t\t\t\t\t\t Wrong password, enter again: ";
+	    		cin>>password4;	
+				}
+				while (password4 != pin);
+	    		
 	cout<<"\n\t\t\t\t\t\t\t\t\tFull Name: "<<name;
 	cout<<"\n\t\t\t\t\t\t\t\t\tBirthday: "<<bday<<"/"<<bmonth<<"/"<<byear;
 	cout<<"\n\t\t\t\t\t\t\t\t\tGender: "<<gender;
 	cout<<"\n\t\t\t\t\t\t\t\t\tAccount Type: "<<acctype;
 	cout<<"\n\t\t\t\t\t\t\t\t\tInitial Deposit: "<<inidepo;
 	cout<<"\n\t\t\t\t\t\t\t\t\tCurrent Balance: "<<balance;
+		}
+		else {
+	cout<<"\t\t\t\t\t\t\t\t\tNo account found.\n\n";
 		}
 	
 	break;
@@ -290,7 +311,17 @@ while (answer2 != 'Y');
 	cout<<"\n\t\t\t\t\t\t----------------------------------------------------------------------------\n";
     cout<<"\t\t\t\t\t\t\t\t\t!LOPIT BANKING SYSTEM";
 	cout<<"\n\t\t\t\t\t\t----------------------------------------------------------------------------\n";
+	if (inidepo > 0) {
+		cout<<"\t\t\t\t\t\t\t\t\t\tEnter PIN: ";
+	cin>>password5;
+	
 	do {
+	cout<<"\t\t\t\t\t\t\t\t\t\tWrong password, enter again: ";
+	cin>>password5;
+	}
+	while(password5 != pin);
+	
+	
 	cout<<"\t\t\t\t\t\t\t\t\t\tDo you really want to close the account?(Y/N): ";
 	cin>>answer4;
 	if (answer4 == 'Y') {
@@ -300,6 +331,10 @@ while (answer2 != 'Y');
 	}
 	
 	}
+	else {
+		cout<<"\t\t\t\t\t\t\t\t\t\tCreate an account first: ";
+	}
+	
 	while (answer4 =='N');
 	break;
 
