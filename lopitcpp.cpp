@@ -1,4 +1,4 @@
-//6:10 pm 14/11/2023
+//4:30 am 27/11/2023
 #include <iostream>
 #include <iomanip>
 #include <cmath>
@@ -7,10 +7,10 @@
 #include <time.h>
 using namespace std;
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
-	int answer, day, month, year, bmonth, bday, byear, current, birthdate, age, minrange = 100000, maxrange = 999999, accno, pin, password,password2, password3, password4, password5, password6;
+	int answer, currentday, currentMonth, currentyear, bmonth, bday, byear, current, birthdate, age, minrange = 100000, maxrange = 999999, accno, pin, password,password2, password3, password4, password5, password6;
 	string name, address, gender,acctype, birthday;
 	double inidepo, deposit,balance, withdraw;
-	char answer2,answer3,answer4,answer5;
+	char answer2,answer3,answer4,answer5,answer6;
 	
 	
 void design();
@@ -24,61 +24,107 @@ do {
 	cin>>answer;
 	switch(answer){	
 	case 1: 
+	do {
 	system("cls");
 	design();
-	cout<<"\nOpening new account";
-	cout<<"\n\nEnter full name(FN, LN, MN): ";
+	cout<<"Opening new account";
+	
+		cout<<"\n\nEnter full name(FN, LN, MN): ";
 	cin.ignore();
 	getline(cin, name);
-	cout<<"\nAddress: ";
+	cout<<"Address: ";
 	getline(cin, address);
 	design2();
-	cout<<"\nCurrent Date\n";
-	cout<<"\nEnter Day today(1 - 31): ";
-	cin>>day;
-	if (day <=0 || day > 31) {       // checks if the inputted current date is valid 
-		system("cls");
-		cout<<"\nInvalid Day.";
-	}
-	else {
-		cout<<"\nEnter Month today(1 - 12): ";
-	cin>>month;
-	if(month <=0 ||month > 12) {  // checks if inputted current month is valid
-		system("cls");
-		cout<<"\nInvalid Month.";
-		 }
-		 else { 
-		 	cout<<"\nEnter Year today: ";  
-	        cin>>year;
-	        cout<<"\nThe date today is "<<day<<"/"<<month<<"/"<<year<<".";
+	
+    cout << "Current Date\n\n";
+    cout << "Enter month today(1 - 12): ";
+    cin >> currentMonth;
+    while (currentMonth > 12) {
+        cout << "INVALID Enter a month: ";
+        cin >> currentMonth;
+    }
+    if (currentMonth == 2) {
+        cout << "Enter a day today(1 - 28): ";
+        cin >> currentday;
+
+        while (currentday > 28) {
+            cout << "INVALID Enter day: ";
+            cin >> currentday;
+        }
+    } else if (currentMonth == 4 && 6 && 9 && 11) {
+        cout << "Enter day today(1 - 30): ";
+        cin >> currentday;
+
+        while (currentday > 30) {
+            cout << "INVALID Enter a day: ";
+            cin >> currentday;
+        }
+    } else {
+        cout << "Enter a day today(1 - 31): ";
+        cin >> currentday;
+
+        while (currentday > 31) {
+            cout << "INVALID Enter a day: ";
+            cin >> currentday;
+        }
+    }
+
+    cout << "Enter current year: ";
+    cin >> currentyear;
+	        
+	cout << "Current date = " << currentMonth << "/" << currentday <<  "/" << currentyear<<endl;
+	
 		design2();
-	cout<<"\n\nBirth Date\n";
-		cout<<"\nEnter birth day (1-31): ";
-		cin>>bday;
-		if(bday<=0 ||bday > 31) { //checks if inputted birth day is valid
-		system("cls");
-		cout<<"\nInvalid birth day, choose from 1-31 only.";
-		}
-		else {
-		cout<<"\nEnter birth month (1-12): ";
-		cin>>bmonth;
-		if(bmonth <=0 ||bmonth > 12) {
-		system("cls");
-		cout<<"\nInvalid birth month, choose from 1-12 only.";
-		}
-		else { 
-		cout<<"\nEnter Birth year: ";
-		cin>>byear;
-		age = year - byear;
-		if (month < bmonth ||month == bmonth && day < bday) {
+		
+	cout << "Birth Date:\n\n";
+    cout << "Enter birth month(1 - 12): ";
+    cin >> bmonth;
+    while (bmonth > 12) {
+        cout << "INVALID Enter a month: ";
+        cin >> bmonth;
+    }
+    if (bmonth == 2) {
+        cout << "Enter a birth day(1 - 28): ";
+        cin >> bday;
+
+        while (bday > 28) {
+            cout << "INVALID Enter day: ";
+            cin >> bday;
+        }
+    } else if (bmonth == 4 && 6 && 9 && 11) {
+        cout << "Enter birth date(1 - 30): ";
+        cin >> bday;
+
+        while (bday > 30) {
+            cout << "INVALID Enter a day: ";
+            cin >> bday;
+        }
+    } else {
+        cout << "Enter a birth day(1 - 31): ";
+        cin >> bday;
+
+        while (bday > 31) {
+            cout << "INVALID Enter a day: ";
+            cin >> bday;
+        }
+    }
+    
+    cout << "Enter birth year: ";
+    cin >> byear;
+	        
+	cout <<"Birthday = " << bmonth << "/" << bday <<  "/" << byear<<endl;
+
+		
+		age = currentyear - byear;
+		if (currentMonth < bmonth ||currentMonth == bmonth && currentday < bday) {
 		age--;	
 		}
-		cout<<"\nYour birthday is "<<bday<<"/"<<bmonth<<"/"<<byear<<".";
+
 		
 		if (age >= 18) {
 	    design2();
-     	cout<<"Gender\n";
-			cout<<"\n\nGender(M or F): ";
+	    cout<<"Gender\n\n";
+			cout<<"\nGender(M or F): ";
 			cin>>gender;
 			while (gender != "M" && gender != "m" && gender!= "F" && gender != "f") {
 			system("cls");
@@ -88,24 +134,24 @@ do {
 			
 			if (gender == "M" || gender == "m") {
 				gender = "Male";
-				cout<<"Gender is "<<gender;
+				cout<<"Gender is "<<gender<<endl;
 			}
 				else if (gender == "F" || gender == "f") {
 				gender = "Female";
-				cout<<"Gender is "<<gender;
+				cout<<"Gender is "<<gender<<endl;
 			}	
 				design2();
      	cout<<"Account Type\n";
-		    cout<<"\n\nAccount Type(S for Savings, C for Current): ";
+		    cout<<"\nAccount Type(S for Savings, C for Current): ";
 		    cin>>acctype;
 		while(acctype!= "S" && acctype!= "s" && acctype!= "C" &&  acctype!= "c") {
-			cout<<"\n\nInvalid account type, choose from Savings(S) and Current(C) only: ";
+			cout<<"\nInvalid account type, choose from Savings(S) and Current(C) only: ";
 		    cin>>acctype;
 		}
 		
 		if (acctype == "S"|| acctype == "s") {
 			acctype = "Savings";
-			cout<<"Account type is "<<acctype<<" account";
+			cout<<"Account type is "<<acctype<<" account"<<endl;
 			design2();
      	cout<<"\nInitial Deposit\n";
 			cout<<"\nInitial Deposit(Minimum of 5000): ";
@@ -120,43 +166,46 @@ do {
 		}
 		else if (acctype == "C" || acctype == "c") {
 			acctype = "Current";
-			cout<<"\nAccount type is "<<acctype<<" account";
+			cout<<"\nAccount type is "<<acctype<<" account"<<endl;
 			 design2();
-     	cout<<"\nInitial Deposit\n";
+     	cout<<"Initial Deposit\n";
 				cout<<"\n\nInitial Deposit(Minimum of 10000): ";
 				cin>>inidepo;
+				cout<<endl;
 			while (inidepo < 10000) {
-				cout<<"\nInitial deposit is not sufficient, reenter: ";
+				cout<<"Initial deposit is not sufficient, reenter: ";
 				cin>>inidepo;
 			}		
 		}
-            	cout<<"\n\nEnter PIN(6 digits only): ";
+		design2();
+		
+            	cout<<"\nEnter PIN(6 digits only): ";
             	cin>>pin;
-            	while (pin > 999999) {
-            		cout<<"\nEnter a 6 digit number only";
+            	while (pin < 100000 || pin > 999999) {
+            		cout<<"\nEnter a 6 digit number only: ";
             		cin>>pin;
 				}
-            	
-				cout<<"\nAccount Successfully Created!";
+			 
+			 cout<<"Confirm account creation [Y/N]";
+			 cin>>answer6;
+			 if (answer6 == 'Y'|| answer6 =='y') {
+			 		cout<<"\nAccount Successfully Created!";
 			    srand(time(0));
 				for (int i=0; i<1; i++) {
 					cout<<"\nAccount number: "<<rand()<<""<<endl;		
 				}
-			
-		}
-		else {
+			 }	
+		}	
+			else {
 			system("cls");
 			cout<<"\nYou are too young to open an account.\n\n";
-		}
-		}
-	
-		}
-	
-		 }
-
-	}
+		}	
 	getline(cin, address);
+	}
+	while (answer6 != 'Y');
+		
 	
+ 
 	
 	break;
 	case 2: 
@@ -317,7 +366,7 @@ while (answer2 != 'Y' || answer2 == 'y');
 	break;
 	
 	case 7: 
-	cout<<"\nDo you really want to end the program? (Y\N): ";
+	cout<<"\nDo you really want to end the program? (Y/N): ";
 	cin>>answer5;
 	break;
 
