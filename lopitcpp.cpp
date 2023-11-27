@@ -1,4 +1,4 @@
-//4:30 am 27/11/2023
+//9:23 pm 27/11/2023
 #include <iostream>
 #include <iomanip>
 #include <cmath>
@@ -11,16 +11,16 @@ using namespace std;
 	string name, address, gender,acctype, birthday;
 	double inidepo, deposit,balance, withdraw;
 	char answer2,answer3,answer4,answer5,answer6;
-	
-	
+double withdraw_money(double withdrawamount);
+double deposit_money(double depo);
 void design();
 void design2();
-void deleteacc(double inidepo, double balance);
+double deleteacc();
 int main(int argc, char** argv) {
 do {
 	design();
 	cout<<"1. Open a new account\n2. Balance Inquiry\n3. Deposit\n4. Withdraw\n5. View Account Information\n6. Close Account\n7. Exit Program\n";
-	cout<<"";
+	cout<<"Choose an option: ";
 	cin>>answer;
 	switch(answer){	
 	case 1: 
@@ -40,7 +40,7 @@ do {
     cout << "Enter month today(1 - 12): ";
     cin >> currentMonth;
     while (currentMonth > 12) {
-        cout << "INVALID Enter a month: ";
+        cout << "Invalid month, enter again: ";
         cin >> currentMonth;
     }
     if (currentMonth == 2) {
@@ -48,7 +48,7 @@ do {
         cin >> currentday;
 
         while (currentday > 28) {
-            cout << "INVALID Enter day: ";
+            cout << "Invalid day, enter again: ";
             cin >> currentday;
         }
     } else if (currentMonth == 4 && 6 && 9 && 11) {
@@ -56,7 +56,7 @@ do {
         cin >> currentday;
 
         while (currentday > 30) {
-            cout << "INVALID Enter a day: ";
+            cout << "Invalid day, enter again: ";
             cin >> currentday;
         }
     } else {
@@ -64,7 +64,7 @@ do {
         cin >> currentday;
 
         while (currentday > 31) {
-            cout << "INVALID Enter a day: ";
+            cout << "Invalid day, enter again: ";
             cin >> currentday;
         }
     }
@@ -123,7 +123,7 @@ do {
 		
 		if (age >= 18) {
 	    design2();
-	    cout<<"Gender\n\n";
+	    cout<<"Gender\n";
 			cout<<"\nGender(M or F): ";
 			cin>>gender;
 			while (gender != "M" && gender != "m" && gender!= "F" && gender != "f") {
@@ -153,7 +153,7 @@ do {
 			acctype = "Savings";
 			cout<<"Account type is "<<acctype<<" account"<<endl;
 			design2();
-     	cout<<"\nInitial Deposit\n";
+     	cout<<"Initial Deposit\n";
 			cout<<"\nInitial Deposit(Minimum of 5000): ";
 				cin>>inidepo;
 				balance += inidepo;
@@ -178,7 +178,7 @@ do {
 			}		
 		}
 		design2();
-		
+		cout<<"PIN and Confirmation\n";
             	cout<<"\nEnter PIN(6 digits only): ";
             	cin>>pin;
             	while (pin < 100000 || pin > 999999) {
@@ -186,7 +186,7 @@ do {
             		cin>>pin;
 				}
 			 
-			 cout<<"Confirm account creation [Y/N]";
+			 cout<<"Confirm account creation [Y/N]: ";
 			 cin>>answer6;
 			 if (answer6 == 'Y'|| answer6 =='y') {
 			 		cout<<"\nAccount Successfully Created!";
@@ -202,12 +202,9 @@ do {
 		}	
 	getline(cin, address);
 	}
-	while (answer6 != 'Y');
-		
-	
- 
-	
+	while (answer6 != 'Y' && answer6 != 'y');
 	break;
+	
 	case 2: 
 	system("cls");
 	design();
@@ -227,10 +224,12 @@ do {
 	}
 	break;
 	
+	
 	//option 3
 	case 3: 
 	system("cls");
 	design();
+	
 	cout<<"Deposit\n";
 	if (inidepo > 0) {
 		cout<<"Enter PIN: ";
@@ -254,22 +253,21 @@ do {
 			cin>>deposit;
 		}
 	}
-		cout<<"Confirm deposit of "<<deposit<<" ?(Y/N)";
+		cout<<"Confirm deposit of "<<deposit<<" ?(Y/N): ";
 	cin>>answer2;
 	if (answer2 == 'Y' || answer2 =='y') {
 			cout<<"Successfully deposited "<<deposit;
-			balance += deposit;
+			deposit_money(deposit);
 			cout<<"\nNew Balance: "<<balance;
 	}
 }
-
-while (answer2 != 'Y' || answer2 == 'y');
+while (answer2 != 'Y' && answer2 != 'y');
 	}
-	
 	else {
 		cout<<"Create an account first.";
 	}
 	break;
+	
 	
 	// option number 4
 	case 4: 
@@ -300,8 +298,9 @@ while (answer2 != 'Y' || answer2 == 'y');
  	          system("cls");
  	          	design();
  	    	    cout<<"\nSuccessfully withdrew "<<withdraw;
- 	    	    balance -= withdraw;
- 	    	    cout<<"\nNew Balance:  "<<balance;
+ 	    	    withdraw_money(withdraw);
+ 	    	    cout<<"\nNew balance is: "<<balance;
+ 	    	    
 		 }
 		}
 		while (answer3 =='N' || answer3 == 'n');
@@ -313,8 +312,8 @@ while (answer2 != 'Y' || answer2 == 'y');
 	case 5: 
 	system("cls");
 		design();
+		cout<<"Account Information\n";
 	    if (inidepo > 0) {
-	    		cout<<"Account Information\n";
 	    		cout<<"\nEnter PIN: ";
 	    		cin>>password4;
 	    		do {
@@ -331,7 +330,7 @@ while (answer2 != 'Y' || answer2 == 'y');
 	cout<<"\nCurrent Balance: "<<balance;
 		}
 		else {
-	cout<<"No account found.\n\n";
+	cout<<"Create an account first.\n\n";
 		}
 	
 	break;
@@ -340,6 +339,7 @@ while (answer2 != 'Y' || answer2 == 'y');
 	case 6: 
 	system("cls");
 	design();
+	cout<<"Account Closure\n";
 	if (inidepo > 0) {
 		cout<<"Enter PIN: ";
 	cin>>password5;
@@ -353,8 +353,9 @@ while (answer2 != 'Y' || answer2 == 'y');
 	
 	cout<<"Do you really want to close the account?(Y/N): ";
 	cin>>answer4;
-	if (answer4 == 'Y') {
-		deleteacc(inidepo,balance);
+	if (answer4 == 'Y' || answer4 == 'y') {
+		deleteacc();
+			cout<<"The account is now closed.";
 	}
 	
 	}
@@ -385,15 +386,24 @@ while (answer5 != 'Y' && answer5!= 'y');
 	return 0;
 }
 
-
-void deleteacc(double, double) {
-	inidepo = 0;
-	balance = 0;
-	cout<<"The account is now closed.";
+double deposit_money(double depo) {
+    balance += depo;
+	return balance;
 }
+
+double withdraw_money(double withdrawamount) {
+	 balance -= withdrawamount;
+	 return balance;
+}
+
+double deleteacc() {
+	return inidepo = 0;
+	return balance = 0;
+}
+
 void design(){
 	cout<<"\n------------------------------------\n";
-	cout<<"\t!LOPIT  SYSTEM";
+	cout<<"\tBank of !LOPIT";
 	cout<<"\n------------------------------------\n";
 }
 void design2(){
