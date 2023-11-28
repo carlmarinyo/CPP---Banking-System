@@ -1,4 +1,4 @@
-///11:37 pm 28/11/2023
+///2:01 am 29/11/2023
 #include <iostream>
 #include <iomanip>
 #include <cmath>               // predefined functions
@@ -73,11 +73,13 @@ do {
 
     cout << "Enter current year: \t\t";
     cin >> currentyear;
-	        
+	while (currentyear > 9999 || currentyear < 1000){ //input only 4 digits
+    cout << "Invalid year, enter again: \t";
+    cin >> currentyear;
+	}	        
+	       
 	cout << "Current date : \t\t\t" << currentMonth << "/" << currentday <<  "/" << currentyear<<endl;
-	
-		design2();
-		
+		design2();	
 	cout << "\t\tBirth Date:\n\n";
     cout << "Enter birth month[1 - 12]: \t";
     cin >> bmonth;
@@ -115,12 +117,17 @@ do {
     cin >> byear;
 	        
 	cout <<"Birthday : \t\t\t" << bmonth << "/" << bday <<  "/" << byear<<endl;
-
+        while (byear > 9999 || byear < 1000){ //input only 4 digits
+    	cout << "Invalid year, enter again: \t";
+        cin >> byear;
+	}
 		
 		age = currentyear - byear; //subtracts the current year to birthyear to get the age
 		if (currentMonth < bmonth || currentMonth == bmonth && currentday < bday) { //checks if current month is before the birthmonth or 
 		}                                                                        // if current month is same with birthmonth but currentday 
-                                                                        // is before bday, it will subtract 1 from age. telling that the birthday
+         design2();                                                                
+		cout <<"Age : " << age<< " years old \t\t" << "Legal Age" << endl;
+		                                                                // is before bday, it will subtract 1 from age. telling that the birthday
                                                                         //this year has not happened yet
 		
 		if (age >= 18) {  //if age is 18 or above, it will proceed to this part
@@ -157,19 +164,15 @@ do {
 			
      	cout<<"\t\tInitial Deposit\n";
 			cout<<"\nMinimum of 5000: \t\t";
-				cin>>inidepo;	
+			cin>>inidepo;	
+			balance = inidepo;
 		
-				while (inidepo < 5000) { //loops question until initial deposit is 5000 and above
+			while (inidepo < 5000) { //loops question until initial deposit is 5000 and above
 				cout<<"Deposit not enough, reenter:\t";
-				cin>>inidepo;	
-			
-				}
-				if (inidepo >= 5000) {
-					deposit_money(inidepo);
-				}
-				
-		}
-		
+				cin>>inidepo;
+				balance = inidepo;		
+			}			
+		}	
 		else if (acctype == "C" || acctype == "c") { // returns current account if c is chosen
 			acctype = "Current";
 			cout<<"Account type:  \t\t\t"<<acctype<<endl;
@@ -177,18 +180,16 @@ do {
      	cout<<"\t\tInitial Deposit\n";
 				cout<<"\nMinimum of 10000: \t\t";
 				cin>>inidepo;
+				balance = inidepo;	
 				
 			while (inidepo < 10000) { // only accepts deposit if its 10000 or above
 				cout<<"Deposit not enough, reenter:\t";
 				cin>>inidepo;
-				
+				balance = inidepo;		
 			}	
-			if (inidepo >= 10000) { // if deposit is 10000 or above, it adds it to the balance using function
-					deposit_money(inidepo);
-				}	
 		}
 		design2();
-		cout<<"\t\tPin & Confirmation\n";
+		        cout<<"\t\tPin & Confirmation\n";
             	cout<<"\nEnter PIN(6 digits only):\t";
             	cin>>pin;
             	while (pin < 100000 || pin > 999999) { //accepts only 6 digit
@@ -205,7 +206,6 @@ do {
 				accno = rand();	
 					cout<<"\nAccount number:\t\t\t"<<accno<<""<<endl;	
 				}
-			
 			 }	
 		}	
 			else {
@@ -215,9 +215,7 @@ do {
 	
 	}
 	while (answer6 != 'Y' && answer6 != 'y'); // loops whole account creation if answer in confirmation is not yes
-
 	break;
-	
 	//option 2 -------------------------------------------------------------------------------------------------------------------------------------
 	case 2: 
 	system("cls");
@@ -226,23 +224,27 @@ do {
 	if (inidepo > 0) { // checks if there is initial deposit to know if there is an account created
 		cout<<"\nEnter password: \t\t";
 		cin >>password;
-	
 	while (password != pin) {  // checks if the inputted password is same as the pin
 		cout<<"Wrong password, enter again: \t";
 		cin >>password;	
 	}
-	system("cls");
-	design();
-		cout<<"Balance: \t\t\t"<<balance<<endl;	  
+	if (acctype == "Savings") {
+		system("cls");
+		design();
+		cout <<"Balance(Savings)\t\t" << balance<< endl;
+	}
+	if (acctype == "Current") {
+		system("cls");
+		design();
+		cout <<"Balance(Current)\t\t" << balance<< endl;
+	}
 	}
 	else {
 		cout<<"\tCreate an account first.";
 	}
 	break;
-	
-	
 	//option 3 -----------------------------------------------------------------------------------------------------------------------------------
-	case 3: 
+		case 3: 
 	system("cls");
 	design();
 	
@@ -257,17 +259,21 @@ do {
 		do {
 	system("cls");
 	design();		
-	cout<<"Deposit Amount: \t\t";
-	cin>>deposit;
 	if (acctype == "Savings") {
+		cout <<"Balance(Savings)\t\t" << balance<< endl;
+		cout<<"\nDeposit must be 300 or above:\t";
+		cin>>deposit;
 		while (deposit < 300 || deposit < 0) { // accepts only 300 and above if acctype is savings
-			cout<<"Must be 300 or above: \t\t";
+			cout<<"Deposit must be 300 or above:\t";
 			cin>>deposit;
 		}
 	}
 	if (acctype == "Current") {
+		cout <<"Balance(Current)\t\t" << balance<< endl;
+		cout<<"\nDeposit must be 500 or above:\t";
+		cin>>deposit;
 		while (deposit < 500 || deposit < 0) { // accepts only 500 and above if acctype is current
-			cout<<"Must be 500 or above: \t\t";
+			cout<<"Deposit must be 500 or above:\t";
 			cin>>deposit;
 		}
 	}
@@ -275,7 +281,7 @@ do {
 	cin>>answer2;
 	if (answer2 == 'Y' || answer2 =='y') { // adds the deposit to balance using function
 			cout<<"\n\tSuccessfully deposited\t"<<deposit<<endl;
-			deposit_money(deposit);  
+			deposit_money(deposit);
 			cout<<"\nNew Balance:\t\t\t"<<balance;
 	}
 }
@@ -305,31 +311,32 @@ while (answer2 != 'Y' && answer2 != 'y');  // loops whole deposit when asnwer is
 		do {
 		system("cls");
 	    design();
-		cout<<"Withdraw amount:\t\t";
-	    cin>>withdraw;
-	   	if (acctype == "Savings") {
-		while (withdraw < 300 || withdraw < 0) {  // accepts only 300 and above if acctype is savings
-			cout<<"Must be 300 or above: \t\t";
-			cin>>withdraw;
-		}
-	}
-	if (acctype == "Current") {
-		while (withdraw < 500 || withdraw < 0) { // accepts only 500 and above if acctype is current
-			cout<<"Must be 500 or above: \t\t";
-			cin>>withdraw;
-		}
-	}	    
-
- 	    cout<<"Confirm withdraw of "<<withdraw<<"?[Y/N]: ";
- 	    cin>>answer3;
- 
- 	    if (answer3 == 'Y' || answer3 == 'y' ) { // withdraws money when answer is yes
- 	       
- 	    	    cout<<"\n\tSuccessfully withdrew "<<withdraw<<endl;
- 	    	    withdraw_money(withdraw);
- 	    	    cout<<"\nNew Balance:\t\t\t"<<balance;
- 	    	    
-		 }
+			if (acctype == "Savings") {	
+				cout <<"Balance(Savings)\t\t" << balance<< endl;
+				cout<<"\nWithdraw must be 300 or above:\t";
+				cin>>withdraw;
+				while (withdraw < 300 || withdraw < 0) {  // accepts only 300 and above if acctype is savings
+					cout<<"Withdraw must be 300 or above: \t";
+					cin>>withdraw;
+				}
+			}
+			if (acctype == "Current") {
+				cout <<"Balance(Current)\t\t" << balance<< endl;
+				cout<<"\nWithdraw must be 500 or above:\t";
+				cin>>withdraw;
+				while (withdraw < 500 || withdraw < 0) { // acce
+					cout<<"Withdraw must be 500 or above:\t";
+					cin>>withdraw;
+				}
+			}	    
+	
+	 	cout<<"Confirm withdraw of "<<withdraw<<"?[Y/N]: \t";
+	 	cin>>answer3;
+	 	if (answer3 == 'Y' || answer3 == 'y' ) { // withdraws money when answer is yes
+	 	    cout<<"\n\tSuccessfully withdrew\t"<<withdraw<<endl;
+	 	   	withdraw_money(withdraw);
+	 		cout<<"\nNew Balance:\t\t\t"<<balance;
+			}
 		}
 		while (answer3 =='N' || answer3 == 'n'); // loops whole withdraw part
 	    }
@@ -356,6 +363,7 @@ while (answer2 != 'Y' && answer2 != 'y');  // loops whole deposit when asnwer is
 	cout<<"Full Name:\t\t\t"<<name;
 	cout<<"\nAddress:\t\t\t"<<location;
 	cout<<"\nBirthday:\t\t\t"<<bday<<"/"<<bmonth<<"/"<<byear;
+	cout<<"\nAge:\t\t\t\t"<< age;
 	cout<<"\nGender:\t\t\t\t"<<gender;
 	cout<<"\nAccount Type:\t\t\t"<<acctype;
 	cout<<"\nAccount Number:\t\t\t"<<accno;
