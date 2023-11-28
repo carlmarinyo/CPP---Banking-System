@@ -1,4 +1,4 @@
-///7:28 pm 28/11/2023
+///11:37 pm 28/11/2023
 #include <iostream>
 #include <iomanip>
 #include <cmath>               // predefined functions
@@ -8,7 +8,7 @@
 using namespace std;
 //----------------------------------------------------------------------------------------------------------------------------------
 int answer, currentday, currentMonth, currentyear, bmonth, bday, byear, current, birthdate, age, minrange = 100000, maxrange = 999999, accno, pin, password,password2, password3, password4, password5, password6;
-string name, address, gender,acctype, birthday;
+string name, location, gender,acctype, birthday;
 double inidepo, deposit,balance, withdraw;                  // variables
 char answer2,answer3,answer4,answer5,answer6;
 // --------------------------------------------------------------------------------------------------------------------------------------------------	
@@ -35,8 +35,7 @@ do {
 	cin.ignore();
 	getline(cin, name);
 	cout<<"Address: \t\t\t";
-	cin.ignore();
-	getline(cin, address);
+	getline(cin, location);
 	design2();
 	
     cout << "\t\tCurrent Date\n\n";
@@ -130,7 +129,6 @@ do {
 			cout<<"\nGender[M or F]: \t\t";
 			cin>>gender;
 			while (gender != "M" && gender != "m" && gender!= "F" && gender != "f") { // loops the question until answer is M/m or F/f
-			system("cls");
 			cout<<"\n\nInvalid Gender, choose M or F only: \t";
 			cin>>gender;		
 			}
@@ -154,7 +152,7 @@ do {
 		
 		if (acctype == "S"|| acctype == "s") { // return savings if chosen S 
 			acctype = "Savings";
-			cout<<"Account type:  \t\t\t"<<acctype<<" account"<<endl;
+			cout<<"Account type:  \t\t\t"<<acctype<<endl;
 			design2();
 			
      	cout<<"\t\tInitial Deposit\n";
@@ -174,7 +172,7 @@ do {
 		
 		else if (acctype == "C" || acctype == "c") { // returns current account if c is chosen
 			acctype = "Current";
-			cout<<"Account type:  \t\t\t"<<acctype<<" account"<<endl;
+			cout<<"Account type:  \t\t\t"<<acctype<<endl;
 			 design2();
      	cout<<"\t\tInitial Deposit\n";
 				cout<<"\nMinimum of 10000: \t\t";
@@ -204,15 +202,17 @@ do {
 			 		cout<<"\n\tAccount Successfully Created!\n";
 			    srand(time(0));                //  random number generator for account number
 				for (int i=0; i<1; i++) {      //  
-					cout<<"\nAccount number:\t\t\t"<<rand()<<""<<endl;		
+				accno = rand();	
+					cout<<"\nAccount number:\t\t\t"<<accno<<""<<endl;	
 				}
+			
 			 }	
 		}	
 			else {
 			system("cls");
 			cout<<"\nYou are too young to open an account.\n\n";
 		}	
-	getline(cin, address);
+	
 	}
 	while (answer6 != 'Y' && answer6 != 'y'); // loops whole account creation if answer in confirmation is not yes
 
@@ -354,10 +354,11 @@ while (answer2 != 'Y' && answer2 != 'y');  // loops whole deposit when asnwer is
 	system("cls");
 	design();	
 	cout<<"Full Name:\t\t\t"<<name;
-	cout<<"\nAddress:\t\t\t"<<address;
+	cout<<"\nAddress:\t\t\t"<<location;
 	cout<<"\nBirthday:\t\t\t"<<bday<<"/"<<bmonth<<"/"<<byear;
 	cout<<"\nGender:\t\t\t\t"<<gender;
 	cout<<"\nAccount Type:\t\t\t"<<acctype;
+	cout<<"\nAccount Number:\t\t\t"<<accno;
 	cout<<"\nInitial Deposit:\t\t"<<inidepo;
 	cout<<"\nCurrent Balance:\t\t"<<balance;
 		}
@@ -395,7 +396,9 @@ while (answer2 != 'Y' && answer2 != 'y');  // loops whole deposit when asnwer is
 		cout<<"\tCreate an account first ";
 	}
 	
-	while (answer4 =='N' || answer4 == 'n'); // goes back to the menu when answer is no
+	if (answer4 =='N' || answer4 == 'n') {
+			break;
+	} // goes back to the menu when answer is no
 	break;
 	
 	case 7: 
