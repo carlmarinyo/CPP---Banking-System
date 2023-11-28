@@ -1,4 +1,4 @@
-//9:23 pm 27/11/2023
+///4:58 pm 28/11/2023
 #include <iostream>
 #include <iomanip>
 #include <cmath>
@@ -19,157 +19,158 @@ double deleteacc();
 int main(int argc, char** argv) {
 do {
 	design();
-	cout<<"1. Open a new account\n2. Balance Inquiry\n3. Deposit\n4. Withdraw\n5. View Account Information\n6. Close Account\n7. Exit Program\n";
-	cout<<"Choose an option: ";
+	cout<<"\t  1. Open a new account\n\t  2. Balance Inquiry\n\t  3. Deposit\n\t  4. Withdraw\n\t  5. View Account Information\n\t  6. Close Account\n\t  7. Exit Program\n";
+	cout<<"\t  Choose an option [1-7]: ";
 	cin>>answer;
 	switch(answer){	
 	case 1: 
-	do {
+
 	system("cls");
+	do {
 	design();
-	cout<<"Opening new account";
+	cout<<"\t\tNew account";
 	
-		cout<<"\n\nEnter full name(FN, LN, MN): ";
+		cout<<"\n\nEnter full name[FN, LN, MN]: \t";
 	cin.ignore();
 	getline(cin, name);
-	cout<<"Address: ";
+	cout<<"Address: \t\t\t";
 	getline(cin, address);
 	design2();
 	
-    cout << "Current Date\n\n";
-    cout << "Enter month today(1 - 12): ";
+    cout << "\t\tCurrent Date\n\n";
+    cout << "Enter month today[1 - 12]: \t";
     cin >> currentMonth;
-    while (currentMonth > 12) {
-        cout << "Invalid month, enter again: ";
+    while (currentMonth > 12 || currentMonth <= 0) { //checks if input is a valid month
+        cout << "Invalid month, enter again: \t";
         cin >> currentMonth;
     }
-    if (currentMonth == 2) {
-        cout << "Enter a day today(1 - 28): ";
+    if (currentMonth == 2) { //checks if month is february to limit the days to 28
+        cout << "Enter a day today[1 - 28]: \t";
         cin >> currentday;
 
-        while (currentday > 28) {
-            cout << "Invalid day, enter again: ";
+        while (currentday > 28 || currentday <= 0) { // checks if day is valid (within 1-28)
+            cout << "Invalid day, enter again: \t";
             cin >> currentday;
         }
-    } else if (currentMonth == 4 && 6 && 9 && 11) {
-        cout << "Enter day today(1 - 30): ";
+    } else if (currentMonth == 4 && 6 && 9 && 11) { // months that has only 30 days
+        cout << "Enter day today[1 - 30]: \t";
         cin >> currentday;
 
-        while (currentday > 30) {
-            cout << "Invalid day, enter again: ";
+        while (currentday > 30 || currentday <= 0) { // checks if day is valid (within 1-30)
+            cout << "Invalid day, enter again: \t";
             cin >> currentday;
         }
-    } else {
-        cout << "Enter a day today(1 - 31): ";
+    } else { // every other month that has 31 days
+        cout << "Enter a day today[1 - 31]: \t";
         cin >> currentday;
 
-        while (currentday > 31) {
-            cout << "Invalid day, enter again: ";
+        while (currentday > 31 || currentday <= 0) { // checks if day is valid (within 1-31)
+            cout << "Invalid day, enter again: \t";
             cin >> currentday;
         }
     }
 
-    cout << "Enter current year: ";
+    cout << "Enter current year: \t\t";
     cin >> currentyear;
 	        
-	cout << "Current date = " << currentMonth << "/" << currentday <<  "/" << currentyear<<endl;
+	cout << "Current date = \t\t\t" << currentMonth << "/" << currentday <<  "/" << currentyear<<endl;
 	
 		design2();
 		
-	cout << "Birth Date:\n\n";
-    cout << "Enter birth month(1 - 12): ";
+	cout << "\t\tBirth Date:\n\n";
+    cout << "Enter birth month[1 - 12]: \t";
     cin >> bmonth;
-    while (bmonth > 12) {
-        cout << "INVALID Enter a month: ";
+    while (bmonth > 12 || bmonth <= 0) { //checks if month is valid
+        cout << "Invalid month, enter again: \t";
         cin >> bmonth;
     }
-    if (bmonth == 2) {
-        cout << "Enter a birth day(1 - 28): ";
+    if (bmonth == 2) { // checks if month is feb
+        cout << "Enter a birth day[1 - 28]: \t";
         cin >> bday;
 
-        while (bday > 28) {
-            cout << "INVALID Enter day: ";
+        while (bday > 28 || bday <= 0) { // checks if day is valid if month is feb
+            cout << "Invalid day, enter again: \t";
             cin >> bday;
         }
-    } else if (bmonth == 4 && 6 && 9 && 11) {
-        cout << "Enter birth date(1 - 30): ";
+    } else if (bmonth == 4 && 6 && 9 && 11) { // months with 30 days
+        cout << "Enter birth date[1 - 30]: \t";
         cin >> bday;
 
-        while (bday > 30) {
-            cout << "INVALID Enter a day: ";
+        while (bday > 30 || bday <= 0) { //checks if day is valid 
+            cout << "Invalid day, enter again: \t";
             cin >> bday;
         }
-    } else {
-        cout << "Enter a birth day(1 - 31): ";
+    } else { // every other month with 31 days
+        cout << "Enter a birth day[1 - 31]: \t";
         cin >> bday;
 
-        while (bday > 31) {
-            cout << "INVALID Enter a day: ";
+        while (bday > 31 || bday <= 0) { // check if day is valid
+            cout << "Invalid day, enter again: \t";
             cin >> bday;
         }
     }
     
-    cout << "Enter birth year: ";
+    cout << "Enter birth year: \t\t";
     cin >> byear;
 	        
-	cout <<"Birthday = " << bmonth << "/" << bday <<  "/" << byear<<endl;
+	cout <<"Birthday = \t\t\t" << bmonth << "/" << bday <<  "/" << byear<<endl;
 
 		
-		age = currentyear - byear;
-		if (currentMonth < bmonth ||currentMonth == bmonth && currentday < bday) {
-		age--;	
-		}
-
+		age = currentyear - byear; //subtracts the current year to birthyear to get the age
+		if (currentMonth < bmonth || currentMonth == bmonth && currentday < bday) { //checks if current month is before the birthmonth or 
+		}                                                                        // if current month is same with birthmonth but currentday 
+                                                                        // is before bday, it will subtract 1 from age. telling that the birthday
+                                                                        //this year has not happened yet
 		
-		if (age >= 18) {
+		if (age >= 18) {  //if age is 18 or above, it will proceed to this part
 	    design2();
-	    cout<<"Gender\n";
-			cout<<"\nGender(M or F): ";
+	    cout<<"\t\tGender\n";
+			cout<<"\nGender[M or F]: \t\t";
 			cin>>gender;
-			while (gender != "M" && gender != "m" && gender!= "F" && gender != "f") {
+			while (gender != "M" && gender != "m" && gender!= "F" && gender != "f") { // loops the question until answer is M/m or F/f
 			system("cls");
-			cout<<"\n\nInvalid Gender, choose M or F only: ";
+			cout<<"\n\nInvalid Gender, choose M or F only: \t";
 			cin>>gender;		
 			}
 			
-			if (gender == "M" || gender == "m") {
+			if (gender == "M" || gender == "m") { // return  male if chosen M
 				gender = "Male";
-				cout<<"Gender is "<<gender<<endl;
+				cout<<"Gender is \t\t\t"<<gender<<endl;
 			}
-				else if (gender == "F" || gender == "f") {
+				else if (gender == "F" || gender == "f") { // return female if chosen F
 				gender = "Female";
-				cout<<"Gender is "<<gender<<endl;
+				cout<<"Gender is \t\t\t"<<gender<<endl;
 			}	
 				design2();
-     	cout<<"Account Type\n";
-		    cout<<"\nAccount Type(S for Savings, C for Current): ";
+     	cout<<"\t\tAccount Type\n";
+		    cout<<"\n[S]Savings or [C] Current: \t";
 		    cin>>acctype;
-		while(acctype!= "S" && acctype!= "s" && acctype!= "C" &&  acctype!= "c") {
-			cout<<"\nInvalid account type, choose from Savings(S) and Current(C) only: ";
+		while(acctype!= "S" && acctype!= "s" && acctype!= "C" &&  acctype!= "c") { // loops question until answer is S/s or C/c
+			cout<<"Invalid, [S] or [C] only: \t";
 		    cin>>acctype;
 		}
 		
-		if (acctype == "S"|| acctype == "s") {
+		if (acctype == "S"|| acctype == "s") { // return savings if chosen S 
 			acctype = "Savings";
-			cout<<"Account type is "<<acctype<<" account"<<endl;
+			cout<<"Account type:  \t\t\t"<<acctype<<" account"<<endl;
 			design2();
-     	cout<<"Initial Deposit\n";
-			cout<<"\nInitial Deposit(Minimum of 5000): ";
+     	cout<<"\t\tInitial Deposit\n";
+			cout<<"\nMinimum of 5000: \t\t";
 				cin>>inidepo;
-				balance += inidepo;
+				deposit_money(inidepo);
 		
 			while (inidepo < 5000) {
-				cout<<"\n\nInitial deposit is not sufficient, reenter: ";
+				cout<<"Deposit not enough, reenter:\t";
 				cin>>inidepo;
-				balance += inidepo;
+			 
 			}
 		}
 		else if (acctype == "C" || acctype == "c") {
 			acctype = "Current";
 			cout<<"\nAccount type is "<<acctype<<" account"<<endl;
 			 design2();
-     	cout<<"Initial Deposit\n";
-				cout<<"\n\nInitial Deposit(Minimum of 10000): ";
+     	cout<<"\tInitial Deposit\n";
+				cout<<"\nMinimum of 10000: \t\t";
 				cin>>inidepo;
 				cout<<endl;
 			while (inidepo < 10000) {
@@ -178,21 +179,21 @@ do {
 			}		
 		}
 		design2();
-		cout<<"PIN and Confirmation\n";
-            	cout<<"\nEnter PIN(6 digits only): ";
+		cout<<"\t\tPin & Confirmation\n";
+            	cout<<"Enter PIN(6 digits only):\t";
             	cin>>pin;
             	while (pin < 100000 || pin > 999999) {
-            		cout<<"\nEnter a 6 digit number only: ";
+            		cout<<"\nEnter a 6 digit number only:\t";
             		cin>>pin;
 				}
 			 
-			 cout<<"Confirm account creation [Y/N]: ";
+			 cout<<"Confirm account creation?[Y/N]:\t";
 			 cin>>answer6;
 			 if (answer6 == 'Y'|| answer6 =='y') {
-			 		cout<<"\nAccount Successfully Created!";
+			 		cout<<"\n\tAccount Successfully Created!\n";
 			    srand(time(0));
 				for (int i=0; i<1; i++) {
-					cout<<"\nAccount number: "<<rand()<<""<<endl;		
+					cout<<"\nAccount number:\t\t\t"<<rand()<<""<<endl;		
 				}
 			 }	
 		}	
@@ -203,6 +204,7 @@ do {
 	getline(cin, address);
 	}
 	while (answer6 != 'Y' && answer6 != 'y');
+
 	break;
 	
 	case 2: 
@@ -402,11 +404,11 @@ double deleteacc() {
 }
 
 void design(){
-	cout<<"\n------------------------------------\n";
-	cout<<"\tBank of !LOPIT";
-	cout<<"\n------------------------------------\n";
+	cout<<"\n--------------------------------------------\n";
+	cout<<"\t     Bank of !LOPIT";
+	cout<<"\n--------------------------------------------\n";
 }
 void design2(){
-	cout<<"\n------------------------------------\n";
+	cout<<"\n--------------------------------------------\n";
 
 }
