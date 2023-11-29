@@ -1,4 +1,4 @@
-///2:01 am 29/11/2023
+///4:17 pm 29/11/2023
 #include <iostream>
 #include <iomanip>
 #include <cmath>               // predefined functions
@@ -21,9 +21,16 @@ double deleteacc();
 int main(int argc, char** argv) {   // main function
 do {
 	design();
+	
 	cout<<"\t  1. Open a new account\n\t  2. Balance Inquiry\n\t  3. Deposit\n\t  4. Withdraw\n\t  5. View Account Information\n\t  6. Close Account\n\t  7. Exit Program\n";
-	cout<<"\t  Choose an option [1-7]: ";
+	cout<<"\t  Choose an option [1-7]: ";	
 	cin>>answer;
+	while(answer!= 1 && answer!= 2 && answer!= 3 && answer!= 4 && answer!= 5 && answer!= 6 && answer!= 7)	{
+	cout<<"\tMust choose only from [1-7]: ";
+	cin>>answer;
+	}
+
+	
 	switch(answer){	
 	case 1: 
 	deleteacc(); // automatic removes balance when you press 1 on menu while already having an account
@@ -123,12 +130,12 @@ do {
 	}
 		
 		age = currentyear - byear; //subtracts the current year to birthyear to get the age
+		
 		if (currentMonth < bmonth || currentMonth == bmonth && currentday < bday) { //checks if current month is before the birthmonth or 
-		}                                                                        // if current month is same with birthmonth but currentday 
-         design2();                                                                
-		cout <<"Age : " << age<< " years old \t\t" << "Legal Age" << endl;
-		                                                                // is before bday, it will subtract 1 from age. telling that the birthday
-                                                                        //this year has not happened yet
+	age--;
+	}                                                                        // if current month is same with birthmonth but currentday                                                                
+		cout <<"Age : " << age<< " years old \t\t" << "Legal Age" << endl; // is before bday, it will subtract 1 from age. telling that the birthday
+                                                                                 //this year has not happened yet
 		
 		if (age >= 18) {  //if age is 18 or above, it will proceed to this part
 	    design2();
@@ -210,7 +217,7 @@ do {
 		}	
 			else {
 			system("cls");
-			cout<<"\nYou are too young to open an account.\n\n";
+			cout<<"\n   You are too young to open an account.\n\n";
 		}	
 	
 	}
@@ -413,7 +420,8 @@ while (answer2 != 'Y' && answer2 != 'y');  // loops whole deposit when asnwer is
 	cout<<"\nDo you really want to end the program? (Y/N): ";
 	cin>>answer5;
 	break;
-
+    
+   
 	}
 }
 while (answer5 != 'Y' && answer5!= 'y'); // loops whole program when the answer is not yes
